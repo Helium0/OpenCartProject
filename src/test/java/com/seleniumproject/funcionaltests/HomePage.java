@@ -41,7 +41,7 @@ public class HomePage extends BasePage {
     }
 
     @Test
-    public void changeCurrencyTest() throws InterruptedException {
+    public void changeCurrencyTest() {
         driver.findElement(By.xpath("//span[text()='Currency']")).click();
         int ss = driver.findElements(By.xpath("//ul[@class='dropdown-menu show']//li")).size();
         List<WebElement> elements = driver.findElements(By.xpath("//ul[@class='dropdown-menu show']//li"));
@@ -50,7 +50,11 @@ public class HomePage extends BasePage {
                 el.click();
                 break;
             }
-
         }
+        String price = driver.findElement(By.xpath("//button[contains(text(), '£0.00')]")).getText();
+
+        Assert.assertEquals(ss,3);
+        Assert.assertEquals(price,"0 item(s) - £0.00");
+
     }
 }
