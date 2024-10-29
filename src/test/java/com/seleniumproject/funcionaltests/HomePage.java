@@ -57,4 +57,11 @@ public class HomePage extends BasePage {
         Assert.assertEquals(price,"0 item(s) - £0.00");
 
     }
+
+    @Test
+    public void nintendoCheck() {
+    int vv = driver.findElements(By.xpath("//div[@class='col-2 text-center']//img")).size();
+        System.out.println(vv);
+
+    }
 }
