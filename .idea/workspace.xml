@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9289bcf1-a3b1-40fe-8462-9041fbb71899" name="Changes" comment="Processing">
+    <list default="true" id="9289bcf1-a3b1-40fe-8462-9041fbb71899" name="Changes" comment="nintendoCheck method">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/seleniumproject/funcionaltests/RegisterAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/seleniumproject/funcionaltests/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/seleniumproject/funcionaltests/HomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,24 +51,7 @@
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="TestNG.HomePage.nintendoCheck">
-    <configuration name="HomePage" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="myBigLocalProject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.seleniumproject.funcionaltests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.seleniumproject.funcionaltests" />
-      <option name="MAIN_CLASS_NAME" value="com.seleniumproject.funcionaltests.HomePage" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="TestNG.RegisterAccount.registerAccountTest">
     <configuration name="HomePage.changeCurrencyTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="myBigLocalProject" />
       <extension name="coverage">
@@ -139,13 +124,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RegisterAccount.registerAccountTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="myBigLocalProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.seleniumproject.funcionaltests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.seleniumproject.funcionaltests" />
+      <option name="MAIN_CLASS_NAME" value="com.seleniumproject.funcionaltests.RegisterAccount" />
+      <option name="METHOD_NAME" value="registerAccountTest" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.RegisterAccount.registerAccountTest" />
         <item itemvalue="TestNG.HomePage.nintendoCheck" />
         <item itemvalue="TestNG.HomePage.changeCurrencyTest" />
         <item itemvalue="TestNG.HomePage.searchBarTest" />
         <item itemvalue="TestNG.HomePage.homePageTest" />
-        <item itemvalue="TestNG.HomePage" />
       </list>
     </recent_temporary>
   </component>
@@ -190,7 +193,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730242742041</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="nintendoCheck method">
+      <option name="closed" value="true" />
+      <created>1730325851094</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1730325851094</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -198,6 +209,7 @@
     <MESSAGE value="Created BasePage and HomePage classes" />
     <MESSAGE value="More functional tests" />
     <MESSAGE value="Processing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Processing" />
+    <MESSAGE value="nintendoCheck method" />
+    <option name="LAST_COMMIT_MESSAGE" value="nintendoCheck method" />
   </component>
 </project>
