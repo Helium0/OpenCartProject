@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 import java.util.Set;
 
-public class HomePage extends BasePage {
+public class Home extends BasePage {
 
 
     @Test
