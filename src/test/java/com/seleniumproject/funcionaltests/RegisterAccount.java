@@ -1,5 +1,176 @@
 package com.seleniumproject.funcionaltests;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import com.seleniumproject.pages.RegisterAccountPage;
 import com.seleniumproject.webBase.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -25,20 +196,20 @@ public class RegisterAccount extends BasePage {
 
     @Test
     public void registerAccountTest() {
-        driver.findElement(By.xpath("//span[text()='My Account']//following-sibling::i")).click();
-        driver.findElement(By.xpath("//ul[@class='dropdown-menu dropdown-menu-right show']//a[text()='Register']")).click();
-        String firstName = driver.findElement(By.cssSelector("#input-firstname")).getAttribute("placeholder");
-        driver.findElement(By.cssSelector("#input-firstname")).sendKeys("Patryk");
-        driver.findElement(By.cssSelector("#input-lastname")).sendKeys("Tester");
-        driver.findElement(By.cssSelector("#input-email")).sendKeys("test666@gmail.com");
+        RegisterAccountPage registerAccountPage = new RegisterAccountPage(driver);
+        registerAccountPage.setMyAccount();
+        registerAccountPage.setRegisterAccount();
+        registerAccountPage.setFirstName();
+        registerAccountPage.setLastName();
+        registerAccountPage.setUserEmail();
 
-        driver.findElement(By.cssSelector("#input-password")).sendKeys("test");
 
-        WebElement button = driver.findElement(By.cssSelector("[name='agree']"));
-        button.click();
 
-        Assert.assertEquals(firstName,"First Name");
-        Assert.assertTrue(button.isEnabled());
+        registerAccountPage.setUserPassword();
+        registerAccountPage.setRegisterButton();
+
+        Assert.assertEquals(registerAccountPage.getFirstName(),"First Name");
+        Assert.assertTrue(registerAccountPage.getRegisterButton().isEnabled());
     }
 
     @Test
