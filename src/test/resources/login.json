@@ -1,0 +1,36 @@
+{
+  "userLogins" : [
+    {
+      "email": "patryk.pre12@gmail.com",
+      "password": "paczak12"
+    },
+    {
+      "email": "test.test666@gmail.com",
+      "password": "test666"
+    },
+    {
+      "email": "jozek99@o2.pl",
+      "password": "pasta2"
+    },
+    {
+      "email": "",
+      "password": ""
+    },
+    {
+      "email": "123",
+      "password": ""
+    },
+    {
+      "email": "444",
+      "password": "123"
+    },
+    {
+      "email": "!",
+      "password": "1234"
+    },
+    {
+      "email": "jocek@gmail.com",
+      "password": "!@1"
+    }
+    ]
+}
