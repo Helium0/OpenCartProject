@@ -1,5 +1,8 @@
 package com.seleniumproject.pages;
 
+import com.seleniumproject.funcionaltests.RegisterAccount;
+import com.seleniumproject.webBase.ReadProperties;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
+import java.sql.*;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +27,10 @@ public class RegisterAccountPage {
     private WebElement registerAccount;
 
     @FindBy(css = "#input-firstname")
-    private WebElement firstName;
+    private WebElement userFirstName;
 
     @FindBy(css = "#input-lastname")
-    private WebElement lastName;
+    private WebElement userLastName;
 
     @FindBy(css = "#input-email")
     private WebElement userEmail;
@@ -34,7 +39,7 @@ public class RegisterAccountPage {
     private WebElement userPassword;
 
     @FindBy(css = "[name='agree']")
-    private WebElement registerButton;
+    private WebElement privacyPolicySlider;
 
     @FindBy(xpath = "//button[@class='btn btn-primary']")
     private WebElement continueButton;
@@ -57,6 +62,9 @@ public class RegisterAccountPage {
     @FindBy(xpath = "//dirv[@class='alert alert-danger alert-dismissible']")
     private WebElement alert;
 
+    @FindBy(xpath = "//h1")
+    private WebElement accountCreated;
+
 
     public RegisterAccountPage(WebDriver driver){
         PageFactory.initElements(driver,this);
@@ -71,48 +79,48 @@ public class RegisterAccountPage {
         registerAccount.click();
     }
 
-    public void setFirstName() {
-        firstName.sendKeys("Patryk");
+    public void setFirstName(String name) {
+        userFirstName.sendKeys(name);
     }
 
     public String getFirstNameAttribute() {
-        return firstName.getAttribute("placeholder");
+        return userFirstName.getAttribute("placeholder");
     }
 
     public String getErrorFirstName() {
         return errorFirstName.getText();
     }
 
-    public void setLastName() {
-        lastName.sendKeys("Tester");
+    public void setLastName(String lastName) {
+        userLastName.sendKeys(lastName);
     }
 
     public String getErrorLastName() {
         return errorLastName.getText();
     }
 
-    public void setUserEmail() {
-        userEmail.sendKeys("test666@gmail.com");
+    public void setUserEmail(String email) {
+        userEmail.sendKeys(email);
     }
 
     public String getErrorUserEmail() {
         return errorEmail.getText();
     }
 
-    public void setUserPassword() {
-        userPassword.sendKeys("test");
+    public void setUserPassword(String password) {
+        userPassword.sendKeys(password);
     }
 
     public String getErrorUserPassword() {
         return errorPassword.getText();
     }
 
-    public void setRegisterButton() {
-        registerButton.click();
+    public void setPrivacyPolicySlider() {
+        privacyPolicySlider.click();
     }
 
-    public WebElement getRegisterButton() {
-        return registerButton;
+    public WebElement getPrivacyPolicySlider() {
+        return privacyPolicySlider;
     }
 
     public void setContinueButton() {
@@ -145,6 +153,47 @@ public class RegisterAccountPage {
 
     public WebElement getAlert() {
         return alert;
+    }
+
+    public WebElement getAccountCreated() {
+        return accountCreated;
+    }
+
+
+    public ResultSet database(String query) throws SQLException {
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myshop", "root","admin");
+        Statement statement = connection.createStatement();
+        return statement.executeQuery(query);
+    }
+
+
+    public int databaseDelete(String query) throws SQLException {
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myshop", "root","admin");
+        Statement statement = connection.createStatement();
+        return statement.executeUpdate(query);
+    }
+
+
+    public void verify (ResultSet set) throws SQLException, IOException {
+        ReadProperties readProperties = new ReadProperties();
+        boolean recordInDataBase = false;
+        while (set.next()){
+            String name = set.getString("firstname");
+            String lastname = set.getString("lastname");
+            String email = set.getString("email");
+
+            if(readProperties.getValues("firstName").equals(name) &&
+                    readProperties.getValues("lastName").equals(lastname) &&
+                    readProperties.getValues("userEmail").equals(email)) {
+                recordInDataBase = true;
+                System.out.println("Record found in table: " +recordInDataBase+"/ Test passed");
+                break;
+            }
+            else {
+                System.out.println("Record found in table: "+recordInDataBase+"/ Test failed");
+            }
+        }
+
     }
 
 }
