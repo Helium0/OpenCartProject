@@ -14,7 +14,7 @@ public class BasePage {
     @BeforeMethod
     public static WebDriver basePage() {
         driver = new ChromeDriver();
-        driver.get("http://localhost/ProjectOpenShop/");
+        driver.get("http://localhost/OpenShop/");
         driver.manage().window().maximize();
         return  driver;
     }

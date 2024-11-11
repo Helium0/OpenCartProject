@@ -1,11 +1,13 @@
 package com.seleniumproject.webBase;
 
+import com.seleniumproject.funcionaltests.RegisterAccount;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-public class ReadProperties {
+public class ReadProperties extends RegisterAccount {
 
 
     private FileInputStream fileInputStream() throws FileNotFoundException {
