@@ -2,15 +2,17 @@ package com.seleniumproject.funcionaltests;
 
 import com.seleniumproject.pages.RegisterAccountPage;
 import com.seleniumproject.webBase.BasePage;
+import com.seleniumproject.webBase.MyListener;
 import com.seleniumproject.webBase.ReadProperties;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.sql.*;
 
-
+@Listeners(value = {MyListener.class})
 public class RegisterAccount extends BasePage {
 
     @Test
