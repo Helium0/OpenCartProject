@@ -1,4 +1,4 @@
-package com.seleniumproject.funcionaltests;
+package com.seleniumproject.testCases;
 
 
 import com.seleniumproject.webBase.BasePage;
