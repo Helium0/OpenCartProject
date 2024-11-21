@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9289bcf1-a3b1-40fe-8462-9041fbb71899" name="Changes" comment="nintendoCheck method">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/seleniumproject/funcionaltests/RegisterAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="9289bcf1-a3b1-40fe-8462-9041fbb71899" name="Changes" comment="Changes in the classes">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
@@ -25,10 +24,24 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Dev-branch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Helium0"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="f625eb7d-778d-437b-a6e0-764e632bd147" />
+        <option name="url" value="https://github.com/Helium0/seleniumDemoProject.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -51,7 +64,7 @@
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="TestNG.RegisterAccount.registerAccountTest">
+  <component name="RunManager" selected="TestNG.RegistrationTest.moveToRegisterAccountTest">
     <configuration name="HomePage.changeCurrencyTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="myBigLocalProject" />
       <extension name="coverage">
@@ -63,24 +76,6 @@
       <option name="PACKAGE_NAME" value="com.seleniumproject.funcionaltests" />
       <option name="MAIN_CLASS_NAME" value="com.seleniumproject.funcionaltests.HomePage" />
       <option name="METHOD_NAME" value="changeCurrencyTest" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HomePage.homePageTest" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="myBigLocalProject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.seleniumproject.funcionaltests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.seleniumproject.funcionaltests" />
-      <option name="MAIN_CLASS_NAME" value="com.seleniumproject.funcionaltests.HomePage" />
-      <option name="METHOD_NAME" value="homePageTest" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -142,13 +137,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RegistrationTest.moveToRegisterAccountTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="myBigLocalProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.seleniumproject.testCases.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.seleniumproject.testCases" />
+      <option name="MAIN_CLASS_NAME" value="com.seleniumproject.testCases.RegistrationTest" />
+      <option name="METHOD_NAME" value="moveToRegisterAccountTest" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.RegistrationTest.moveToRegisterAccountTest" />
         <item itemvalue="TestNG.RegisterAccount.registerAccountTest" />
+        <item itemvalue="TestNG.HomePage.searchBarTest" />
         <item itemvalue="TestNG.HomePage.nintendoCheck" />
         <item itemvalue="TestNG.HomePage.changeCurrencyTest" />
-        <item itemvalue="TestNG.HomePage.searchBarTest" />
-        <item itemvalue="TestNG.HomePage.homePageTest" />
       </list>
     </recent_temporary>
   </component>
@@ -201,7 +214,39 @@
       <option name="project" value="LOCAL" />
       <updated>1730325851094</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="ExtentReport class for report">
+      <option name="closed" value="true" />
+      <created>1732141521033</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1732141521033</updated>
+    </task>
+    <task id="LOCAL-00007" summary="BeforeSuit and AfterSuit adnotations for create and end report">
+      <option name="closed" value="true" />
+      <created>1732141604359</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1732141604359</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Changes in the class">
+      <option name="closed" value="true" />
+      <created>1732143108669</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1732143108669</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Changes in the classes">
+      <option name="closed" value="true" />
+      <created>1732229910264</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1732229910264</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -210,6 +255,10 @@
     <MESSAGE value="More functional tests" />
     <MESSAGE value="Processing" />
     <MESSAGE value="nintendoCheck method" />
-    <option name="LAST_COMMIT_MESSAGE" value="nintendoCheck method" />
+    <MESSAGE value="ExtentReport class for report" />
+    <MESSAGE value="BeforeSuit and AfterSuit adnotations for create and end report" />
+    <MESSAGE value="Changes in the class" />
+    <MESSAGE value="Changes in the classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes in the classes" />
   </component>
 </project>
