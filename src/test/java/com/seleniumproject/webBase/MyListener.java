@@ -1,5 +1,7 @@
 package com.seleniumproject.webBase;
 
+
+import com.seleniumproject.utilities.ExtentReport;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestListener;
@@ -12,6 +14,13 @@ import java.io.IOException;
 public class MyListener extends BasePage implements ITestListener {
 
 
+
+    @Override
+    public void onTestSuccess(ITestResult result) {
+
+        ExtentReport extentReport = new ExtentReport();
+        extentReport.getExtentReport();
+    }
 
     @Override
     public void onTestFailure(ITestResult result) {
