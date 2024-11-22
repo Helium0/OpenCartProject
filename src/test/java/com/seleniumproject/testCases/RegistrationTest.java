@@ -26,7 +26,7 @@ public class RegistrationTest extends BasePage {
         extentReports.createTest("Move_To_Register_Account_Test");
 
         try {
-            ExtentTest test = extentReports.createTest("KK").log(Status.PASS,"PASS");
+            test = extentReports.createTest("KK").log(Status.PASS,"PASS");
             logger.info("*** Starting Move_To_Register_Account_Test***");
             RegisterAccountPage registerAccountPage = new RegisterAccountPage(driver);
             logger.info("Click on Register from Main menu");

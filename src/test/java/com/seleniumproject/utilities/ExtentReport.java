@@ -10,11 +10,13 @@ import java.util.Date;
 
 public class ExtentReport {
 
-    protected  static ExtentReports extentReports;
+    public static ExtentReports extentReports;
+    public static ExtentTest test;
+    public static ExtentSparkReporter extentSparkReporter;
 
     public  static ExtentReports getExtentReport() {
         extentReports = new ExtentReports();
-        ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "\\src\\test\\resources\\reports\\" + getTimeStampDate() + "raport.html");
+        extentSparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "\\src\\test\\resources\\reports\\" + getTimeStampDate() + "raport.html");
         extentReports.attachReporter(extentSparkReporter);
         extentSparkReporter.config().setReportName("Patrick`s Report");
         extentSparkReporter.config().setTimeStampFormat("MMM dd, yyyy HH:mm:ss");

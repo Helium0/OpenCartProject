@@ -24,8 +24,7 @@ public class MyListener extends BasePage implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-
-        ITestListener.super.onTestFailure(result);
+        
         TakesScreenshot screen = (TakesScreenshot) driver;
         File fileU = screen.getScreenshotAs(OutputType.FILE);
         int number = (int)(Math.random()*1000);
