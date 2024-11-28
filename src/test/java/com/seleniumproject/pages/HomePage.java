@@ -75,13 +75,10 @@ public class HomePage {
         boolean logoIsDisplayed = false;
         for(WebElement log : logos) {
             if(log.getAttribute("alt").equals(logoName)!= log.isDisplayed()){
-//                Actions actions = new Actions(driver);
-//                actionsInstance(driver).;
                 WebElement arrow = driver.findElement(By.xpath("//button[@data-bs-target='#carousel-banner-1']//span[@class='fa-solid fa-chevron-right']"));
                 actionsInstance(driver).click(arrow).perform();
             } else {
                 logoIsDisplayed = true;
-                System.out.println(logoIsDisplayed);
                 break;
             }
         }
