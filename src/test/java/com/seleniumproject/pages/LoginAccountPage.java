@@ -14,8 +14,6 @@ import java.io.IOException;
 
 public class LoginAccountPage {
 
-    private WebDriver driver;
-
     @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu-right show']//a[text()='Login']")
     private WebElement loginElementFromList;
 
@@ -30,6 +28,9 @@ public class LoginAccountPage {
 
     @FindBy(id = "input-password")
     private WebElement loginPassword;
+
+    @FindBy(xpath = "//h2[contains(normalize-space(),'My Orders')]")
+    private WebElement myOrder;
 
     @DataProvider(name = "dp")
     public String[] readJson() throws IOException, ParseException {
@@ -50,7 +51,6 @@ public class LoginAccountPage {
 
     public LoginAccountPage(WebDriver driver) {
         PageFactory.initElements(driver,this);
-        this.driver = driver;
     }
 
     public void clickLoginElementFromList() {
@@ -80,5 +80,10 @@ public class LoginAccountPage {
     public void setLoginPassword(String password) {
         loginPassword.sendKeys(password);
     }
+
+    public String setMyOrder(){
+        return myOrder.getText();
+    }
+
 
 }

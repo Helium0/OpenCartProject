@@ -9,6 +9,7 @@ import com.seleniumproject.utilities.DataProviders;
 import com.seleniumproject.utilities.ExtentReport;
 import com.seleniumproject.webBase.BasePage;
 import com.seleniumproject.webBase.MyListener;
+import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -20,7 +21,7 @@ public class LoginToAccount extends BasePage {
     @Test
     public void loginWithoutCredentials() {
         ExtentTest test = extentReports.createTest("Login_Without_Credentials_Test");
-        logger.info("*** Starting Login_Without_Credentials ***");
+        logger.info("*** Starting Login_Without_Credentials_Test ***");
         RegisterAccountPage registerAccountPage = new RegisterAccountPage(driver);
         registerAccountPage.setMyAccount();
         LoginAccountPage loginAccountPage = new LoginAccountPage(driver);
@@ -28,15 +29,21 @@ public class LoginToAccount extends BasePage {
         loginAccountPage.clickLoginElementFromPage();
         registerAccountPage.waitMethodForWebelement();
 
-        Assert.assertEquals(loginAccountPage.getLoginAlert().getText(),"Warning: No match for E-Mail Address and/or Password.");
-        test.log(Status.PASS,"Assertion passed").pass(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
-        logger.info("*** Finished Login_Without_Credentials ***");
+        if(loginAccountPage.getLoginAlert().getText().equals("Warning: No match for E-Mail Address and/or Password.")){
+            Assert.assertEquals(loginAccountPage.getLoginAlert().getText(),"Warning: No match for E-Mail Address and/or Password.");
+            test.log(Status.PASS,"Assertion passed").pass(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+            logger.info("*** Finished Login_Without_Credentials_Test ***");
+        } else {
+            test.log(Status.FAIL, "Assertion failed").fail(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+            logger.info("Login_Without_Credentials_Test Failed");
+            Assert.fail("Login_Without_Credentials_Test Failed");
+        }
     }
 
     @Test
     public void loginWithoutPassword() {
         ExtentTest test = extentReports.createTest("Login_Without_Password_Test");
-        logger.info("*** Starting Login_Without_Password ***");
+        logger.info("*** Starting Login_Without_Password_Test ***");
         RegisterAccountPage registerAccountPage = new RegisterAccountPage(driver);
         registerAccountPage.setMyAccount();
         LoginAccountPage loginAccountPage = new LoginAccountPage(driver);
@@ -46,15 +53,21 @@ public class LoginToAccount extends BasePage {
         loginAccountPage.clickLoginElementFromPage();
         registerAccountPage.waitMethodForWebelement();
 
-        Assert.assertEquals(loginAccountPage.getLoginAlert().getText(),"Warning: No match for E-Mail Address and/or Password.");
-        test.log(Status.PASS,"Assertion passed").pass(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
-        logger.info("*** Finished Login_Without_Password ***");
+        if(loginAccountPage.getLoginAlert().getText().equals("Warning: No match for E-Mail Address and/or Password.")){
+            Assert.assertEquals(loginAccountPage.getLoginAlert().getText(),"Warning: No match for E-Mail Address and/or Password.");
+            test.log(Status.PASS,"Assertion passed").pass(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+            logger.info("*** Finished Login_Without_Password_Test ***");
+        } else {
+            test.log(Status.FAIL, "Assertion failed").fail(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+            logger.info("Login_Without_Password_Test Failed");
+            Assert.fail("Login_Without_Password_Test Failed");
+        }
     }
 
     @Test
     public void loginWithoutEmail() {
         ExtentTest test = extentReports.createTest("Login_Without_Email_Test");
-        logger.info("*** Starting Login_Without_Email ***");
+        logger.info("*** Starting Login_Without_Email_Test ***");
         RegisterAccountPage registerAccountPage = new RegisterAccountPage(driver);
         registerAccountPage.setMyAccount();
         LoginAccountPage loginAccountPage = new LoginAccountPage(driver);
@@ -64,15 +77,21 @@ public class LoginToAccount extends BasePage {
         loginAccountPage.clickLoginElementFromPage();
         registerAccountPage.waitMethodForWebelement();
 
-        Assert.assertEquals(loginAccountPage.getLoginAlert().getText(), "Warning: No match for E-Mail Address and/or Password.");
-        test.log(Status.PASS,"Assertion passed").pass(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
-        logger.info("*** Finished Login_Without_Email ***");
+        if(loginAccountPage.getLoginAlert().getText().equals("Warning: No match for E-Mail Address and/or Password.")){
+            Assert.assertEquals(loginAccountPage.getLoginAlert().getText(), "Warning: No match for E-Mail Address and/or Password.");
+            test.log(Status.PASS,"Assertion passed").pass(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+            logger.info("*** Finished Login_Without_Email_Test ***");
+        } else {
+            test.log(Status.FAIL, "Assertion failed").fail(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+            logger.info("Login_Without_Email_Test Failed");
+            Assert.fail("Login_Without_Email_Test Failed");
+        }
     }
 
     @Test
     public void loginWithInvalidCredentials() {
         ExtentTest test = extentReports.createTest("Login_With_Invalid_Credentials_Test");
-        logger.info("*** Starting Login_With_Invalid_Credentials ***");
+        logger.info("*** Starting Login_With_Invalid_Credentials_Test ***");
         RegisterAccountPage registerAccountPage = new RegisterAccountPage(driver);
         registerAccountPage.setMyAccount();
         LoginAccountPage loginAccountPage = new LoginAccountPage(driver);
@@ -83,13 +102,21 @@ public class LoginToAccount extends BasePage {
         loginAccountPage.clickLoginElementFromPage();
         registerAccountPage.waitMethodForWebelement();
 
-        Assert.assertEquals(loginAccountPage.getLoginAlert().getText(), "Warning: No match for E-Mail Address and/or Password.");
-        test.log(Status.PASS,"Assertion passed").pass(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
-        logger.info("*** Finished Login_With_Invalid_Credentials ***");
+        if(loginAccountPage.getLoginAlert().getText().equals("Warning: No match for E-Mail Address and/or Password.")) {
+            Assert.assertEquals(loginAccountPage.getLoginAlert().getText(), "Warning: No match for E-Mail Address and/or Password.");
+            test.log(Status.PASS, "Assertion passed").pass(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+            logger.info("*** Finished Login_With_Invalid_Credentials ***");
+        } else {
+            test.log(Status.FAIL, "Assertion failed").fail(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+            logger.info("Login_With_Invalid_Credentials_Test Failed");
+            Assert.fail("Login_With_Invalid_Credentials_Test Failed");
+        }
     }
 
     @Test(dataProvider = "dp", dataProviderClass = DataProviders.class)
     public void loginsFromJSON(String data) throws InterruptedException {
+        ExtentTest test = extentReports.createTest("Logins_From_JSON_File_Test");
+        logger.info("*** Starting Logins_From_JSON_File_Test ***");
         LoginAccountPage loginAccountPage = new LoginAccountPage(driver);
         RegisterAccountPage registerAccountPage = new RegisterAccountPage(driver);
         registerAccountPage.setMyAccount();
@@ -97,8 +124,30 @@ public class LoginToAccount extends BasePage {
         String users[] = data.split(",");
         loginAccountPage.setLoginEmail(users[0]);
         loginAccountPage.setLoginPassword(users[1]);
+        test.log(Status.PASS,"Succesfully Provided Credentials").info("Succesfully Provided Credentials");
+        logger.info("Succesfully Provided Credentials");
         loginAccountPage.clickLoginElementFromPage();
-        Thread.sleep(5000);
-    }
 
+        try {
+            if (loginAccountPage.getLoginAlert().isDisplayed()) {
+                Assert.assertEquals(loginAccountPage.getLoginAlert().getText(), "Warning: No match for E-Mail Address and/or Password.");
+                test.log(Status.PASS, "Assertion passed").pass(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+                logger.info("*** Finished Logins_From_JSON_File_Test ***");
+            } else {
+                test.log(Status.FAIL, "Assertion failed").fail(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+                logger.info("Logins_From_JSON_File_Test Failed");
+                Assert.fail("Logins_From_JSON_File_Test Failed");
+            }
+        } catch (NoSuchElementException e) {
+            if (loginAccountPage.setMyOrder().equals("My Orders")) {
+                Assert.assertEquals(loginAccountPage.setMyOrder(), "My Orders");
+                test.log(Status.PASS, "Assertion passed").pass(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+                logger.info("*** Finished Logins_From_JSON_File_Test ***");
+            } else {
+                test.log(Status.FAIL, "Assertion failed").fail(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+                logger.info("Logins_From_JSON_File_Test Failed");
+                Assert.fail("Logins_From_JSON_File_Test Failed");
+            }
+        }
+    }
 }
