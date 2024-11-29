@@ -21,14 +21,14 @@ public class ExtentReport {
 
     public static void setExtentReport() {
         extentReports = new ExtentReports();
-        extentSparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "\\src\\test\\resources\\reports\\" + getTimeStampDate() + "raport.html");
+        extentSparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "\\src\\test\\resources\\reports\\" + getTimeStampDate() + "_raport.html");
         extentReports.attachReporter(extentSparkReporter);
         extentSparkReporter.config().setReportName("Patrick`s Report");
         extentSparkReporter.config().setTimeStampFormat("MMM dd, yyyy HH:mm:ss");
         extentSparkReporter.config().setTheme(Theme.DARK);
     }
 
-    public static void endReport() throws IOException {
+    public static void endReport() {
         extentReports.flush();
     }
 
@@ -42,7 +42,6 @@ public class ExtentReport {
     public static String capturePhoto64(WebDriver driver) {
         TakesScreenshot screenshot = (TakesScreenshot) driver;
         return screenshot.getScreenshotAs(OutputType.BASE64);
-//        return base64;
     }
 
 }

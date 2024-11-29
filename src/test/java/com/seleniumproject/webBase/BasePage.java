@@ -6,8 +6,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
-
-import java.io.IOException;
 import java.time.Duration;
 
 
@@ -25,7 +23,7 @@ public class BasePage extends ExtentReport {
     }
 
     @AfterSuite
-    public void afterSuite() throws IOException {
+    public void afterSuite() {
         ExtentReport.endReport();
 
     }
