@@ -43,7 +43,6 @@ public class BasePage extends ExtentReport {
     @AfterMethod
     public void closeDown() {
         driver.quit();
-        System.out.println("Test passed");
     }
 
 }
