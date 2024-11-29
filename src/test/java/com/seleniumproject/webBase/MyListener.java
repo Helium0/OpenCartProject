@@ -27,8 +27,6 @@ public class MyListener extends BasePage implements ITestListener {
     public void onTestFailure(ITestResult result) {
         test = extentReports.createTest("Test Failed: "+result.getName());
         test.log(Status.FAIL,"Test Failed: "+result.getName()).addScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver));
-
-
     }
 }
 
