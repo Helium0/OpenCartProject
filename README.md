@@ -12,6 +12,23 @@ First you need all-in-one web server. There are plenty on the internet however I
 4. You dont have to install APP locally if you dont want however data base tests will fail
 
 
+# More about project
+I have been learning Java since February 2024 that`s why I didnt publish anything on my github. I had to learn basic concepts, logic and syntax.
+I am still in study zone however to go further and learn new things I decided to create my own projects.
+
+## Technologies, tools and methodologies which I used:
+`- Java programming Language`
+
+`- Selenium and Maven tools`
+
+`- OOP methodology`
+
+`- KISS and DRY programming principles` 
+
+
+
+
+
 
 
 
