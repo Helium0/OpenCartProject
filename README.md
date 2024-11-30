@@ -11,11 +11,6 @@ First you need all-in-one web server. There are plenty on the internet however I
    ![2024-11-24_01h02_35](https://github.com/user-attachments/assets/26730d21-1bbc-468f-b18b-a590deb060b1)
 4. You dont have to install APP locally if you dont want however data base tests will fail
 
-
-# More about project
-I have been learning Java since February 2024 that`s why I didnt publish anything on my github. I had to learn basic concepts, logic and syntax.
-I am still in study zone however to go further and learn new things I decided to create my own projects.
-
 ## Technologies, tools and methodologies which I used:
 `- Java programming Language`
 
@@ -24,6 +19,23 @@ I am still in study zone however to go further and learn new things I decided to
 `- OOP methodology`
 
 `- KISS and DRY programming principles` 
+
+
+# More about project
+I have been learning Java since February 2024. As we all know nothing teach more as own projects where we can implement new things and examine our knowledge.
+Here I was able to connect to the data base and write some tests for example create user on UI and check if created user appear on DB :satisfied:
+
+![2024-11-30_22h09_42](https://github.com/user-attachments/assets/59019abe-437b-472e-91b2-5a6b5ae2228f)
+
+
+I implemented extent report so after each tests run html file will be created:
+
+![report](https://github.com/user-attachments/assets/c127c670-b59b-4569-afdf-156b9589c69d)
+
+Screenshoots are also included in the report so you can easily check where test failed or went through. What you need to do is click on purple label with text: **base64 img**
+
+![2024-11-30_21h55_08](https://github.com/user-attachments/assets/fb58e180-544e-49e4-80ec-9405c28a64a7)
+
 
 
 
