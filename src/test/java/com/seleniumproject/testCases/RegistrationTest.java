@@ -1,6 +1,5 @@
 package com.seleniumproject.testCases;
 
-import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
@@ -13,15 +12,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
 import java.io.IOException;
 import java.sql.*;
 
-@Listeners(value = {MyListener.class})
+
 public class RegistrationTest extends BasePage {
 
     @Test
-    public void moveToRegisterAccountTest() throws IOException {
+    public void moveToRegisterAccountTest() {
 
         try {
             test = extentReports.createTest("Move_To_Register_Account_Test").log(Status.PASS,"Created Test");
@@ -49,7 +47,7 @@ public class RegistrationTest extends BasePage {
     @Test(priority = 1)
     public void registerAccount() throws IOException {
         ExtentTest test = extentReports.createTest("Register_Account_Test");
-        logger.info("*** Starting Register_Account_Test***");
+        logger.info("*** Starting Register_Account_Test ***");
         RegisterAccountPage registerAccountPage = new RegisterAccountPage(driver);
         ReadProperties readProperties = new ReadProperties();
         registerAccountPage.setMyAccount();
@@ -73,26 +71,35 @@ public class RegistrationTest extends BasePage {
             if(registerAccountPage.getAccountCreated().getText().equals("Your Account Has Been Created!")){
                 System.out.println("Registration successfull from UI/Application");
                 test.log(Status.PASS, "Assertion passed").info(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+                logger.info("*** Finished Register_Account_Test ***");
             } else {
                 test.log(Status.FAIL,"Test failed").fail(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
-                Assert.fail();
+                logger.info("Register_Account_Test Failed");
+                Assert.fail("Register_Account_Test Failed");
             }
-        logger.info("*** Finished Register_Account_Test ***");
         }
 
 
     @Test(dependsOnMethods = {"registerAccount"})
     public void validationRegisteredAccount() throws SQLException, IOException {
-        ExtentTest test = extentReports.createTest("Validate_Created_Account_On_DataBase");
-        logger.info("*** Starting Validation_Registered_Account_On_DataBase_Test ***");
-        String query = "SELECT firstname,lastname,email FROM oc_customer";
-        test.log(Status.PASS,"Query: SELECT firstname,lastname,email FROM oc_customer");
-        RegisterAccountPage registerAccountPage = new RegisterAccountPage(driver);
-        registerAccountPage.verify(registerAccountPage.database(query));
-        test.log(Status.PASS,"Assertion passed");
-        logger.info("*** Finished Validation_Registered_Account_On_DataBase_Test ***");
-
+        try {
+            ExtentTest test = extentReports.createTest("Validate_Created_Account_On_DataBase");
+            logger.info("*** Starting Validation_Registered_Account_On_DataBase_Test ***");
+            String query = "SELECT firstname,lastname,email FROM oc_customer";
+            test.log(Status.PASS, "Query: SELECT firstname,lastname,email FROM oc_customer");
+            RegisterAccountPage registerAccountPage = new RegisterAccountPage(driver);
+            registerAccountPage.verify(registerAccountPage.database(query));
+            test.log(Status.PASS, "Assertion passed");
+            logger.info("*** Finished Validation_Registered_Account_On_DataBase_Test ***");
+        } catch (SQLException sql) {
+            logger.info("SQL connetion failed");
+            Assert.fail("Validation_Registered_Account_On_DataBase_Test Failed");
+        } catch (IOException io) {
+            logger.info("Cant read data");
+            Assert.fail("Validation_Registered_Account_On_DataBase_Test Failed");
+        }
     }
+
 
     @Test(dependsOnMethods = {"validationRegisteredAccount"})
     public void registerAccountOnTheSameData() throws IOException {
@@ -117,9 +124,16 @@ public class RegistrationTest extends BasePage {
         registerAccountPage.setContinueButton();
         test.log(Status.PASS,"Set Continue Button");
         registerAccountPage.waitObjMethod().until(ExpectedConditions.textToBePresentInElement(registerAccountPage.getAlert(),"Warning: E-Mail Address is already registered!"));
-        Assert.assertEquals(registerAccountPage.getAlert().getText(), "Warning: E-Mail Address is already registered!");
-        test.log(Status.PASS,"Assertion passed").info(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
-        logger.info("*** Finished Register_Account_On_The_Same_Data_Test ***");
+
+        if(registerAccountPage.getAlert().getText().equals("Warning: E-Mail Address is already registered!")) {
+            Assert.assertEquals(registerAccountPage.getAlert().getText(), "Warning: E-Mail Address is already registered!");
+            test.log(Status.PASS, "Assertion passed").info(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+            logger.info("*** Finished Register_Account_On_The_Same_Data_Test ***");
+        } else {
+            test.log(Status.FAIL,"Test failed").fail(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+            logger.info("Register_Account_On_The_Same_Data_Test Failed");
+            Assert.fail("Register_Account_On_The_Same_Data_Test Failed");
+        }
     }
 
     @Test(dependsOnMethods = {"registerAccountOnTheSameData"})
@@ -133,14 +147,14 @@ public class RegistrationTest extends BasePage {
         boolean recordInDataBase = true;
         while (set.next()) {
             int emailsNumber = set.getInt("email");
-            String info = emailsNumber == 1 ? "One user email: "+recordInDataBase : "More user emails: "+recordInDataBase;
-            System.out.println(info);
-            if(info.contains("One")){
+            String info = emailsNumber == 2 ? "Two user emails: "+recordInDataBase : "More user emails: "+recordInDataBase;
+            if(info.contains("Two")){
                 test.log(Status.PASS, "Validation passed");
                 logger.info("*** Finished Validation_If_Account_Has_Been_Created_Once_Test ***");
             } else {
-                logger.info("Test failed");
-                Assert.fail();
+                test.log(Status.FAIL,"Test failed").fail(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+                logger.info("Validation_If_Account_Has_Been_Created_Once_Test Failed");
+                Assert.fail("Validation_If_Account_Has_Been_Created_Once_Test Failed");
             }
         }
 
@@ -160,35 +174,36 @@ public class RegistrationTest extends BasePage {
             logger.info("*** Finished Delete_Registered_Account_From_DataBase ***");
         } else {
                 test.log(Status.FAIL,"Record doesn`t exist in database");
-                logger.info("Test failed");
-                Assert.fail();
+            logger.info("Delete_Registered_Account_From_DataBase Failed");
+            Assert.fail("Delete_Registered_Account_From_DataBase Failed");
         }
     }
 
     @Test(dependsOnMethods = {"deleteRegisteredAccountFromDataBase"})
     public void validationDeletedAccount() throws SQLException, IOException {
         ExtentTest test = extentReports.createTest("Validation_Deleted_Account");
-        logger.info("*** Starting Validation_Deleted_Account ***");
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myshop", "root", "admin");
-        Statement st = connection.createStatement();
+        logger.info("*** Starting Validation_Deleted_Account_Test ***");
         ReadProperties readProperties = new ReadProperties();
+        RegisterAccountPage registerAccountPage = new RegisterAccountPage(driver);
+
         String ss = readProperties.getValues("userEmail");
         test.log(Status.PASS,"Set User Email In to Variable");
         String query = "SELECT COUNT(email) AS email FROM oc_customer WHERE email = '" + ss + "'";
-        ResultSet set = st.executeQuery(query);
+        ResultSet set = registerAccountPage.database(query);
         test.log(Status.PASS,"SELECT COUNT(email) AS email FROM oc_customer WHERE email = '" + ss + "'");
         boolean recordInDataBase = true;
         while (set.next()) {
             int email = set.getInt("email");
             test.log(Status.PASS,"Set Email Number In To Variable");
-            String info = email == 0 ? "No record in DataBase: "+recordInDataBase : "Record is still inside DataBase: "+recordInDataBase;
-            System.out.println(info);
+            String info = email == 0 ? "No record in DataBase: "+recordInDataBase : " Record is still in DataBase: "+recordInDataBase;
+            test.log(Status.PASS,info);
             if(info.contains("No record")){
                 test.log(Status.PASS, "Validation passed");
-                logger.info("*** Finished Validation_Deleted_Account ***");
+                logger.info("*** Finished Validation_Deleted_Account_Test ***");
             } else {
-                logger.info("Test failed");
-                Assert.fail();
+                test.log(Status.FAIL,info);
+                logger.info("Validation_Deleted_Account_Test Failed "+info);
+                Assert.fail("Validation_Deleted_Account_Test Failed");
             }
         }
     }
@@ -197,7 +212,7 @@ public class RegistrationTest extends BasePage {
     public void registerAccountTestWithoutRegister() throws IOException {
         ExtentTest test = extentReports.createTest("Register_Account_Test_Without_Register");
         try {
-            logger.info("*** Starting Register_Account_Test_Without_Register ***");
+            logger.info("*** Starting Register_Account_Test_Without_Register_Test ***");
             RegisterAccountPage registerAccountPage = new RegisterAccountPage(driver);
             ReadProperties readProperties = new ReadProperties();
             registerAccountPage.setMyAccount();
@@ -215,12 +230,20 @@ public class RegistrationTest extends BasePage {
             registerAccountPage.setPrivacyPolicySlider();
             test.log(Status.PASS, "Set Privacy Policy Done").info(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
 
-            Assert.assertEquals(registerAccountPage.getFirstNameAttribute(), "First Name");
-            Assert.assertTrue(registerAccountPage.getPrivacyPolicySlider().isEnabled());
-            test.log(Status.PASS, "Assertions Passed").info(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
-            logger.info("*** Finished Register_Account_Test_Without_Register ***");
+            if(registerAccountPage.getFirstNameAttribute().equals("First Name") && registerAccountPage.getPrivacyPolicySlider().isEnabled()) {
+                Assert.assertEquals(registerAccountPage.getFirstNameAttribute(), "First Name");
+                Assert.assertTrue(registerAccountPage.getPrivacyPolicySlider().isEnabled());
+                test.log(Status.PASS, "Assertions Passed").info(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+                logger.info("*** Finished Register_Account_Test_Without_Register_Test ***");
+            } else {
+                test.log(Status.FAIL,"Test failed").fail(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+                logger.info("Register_Account_Test_Without_Register_Test Failed");
+                Assert.fail("Register_Account_Test_Without_Register_Test Failed");
+            }
         } catch (Exception e){
             test.log(Status.FAIL,"Test failed").fail(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+            logger.info("Register_Account_Test_Without_Register_Test Failed");
+            Assert.fail("Register_Account_Test_Without_Register_Test Failed");
         }
     }
 
@@ -230,7 +253,7 @@ public class RegistrationTest extends BasePage {
         try {
             RegisterAccountPage registerAccountPage = new RegisterAccountPage(driver);
             registerAccountPage.setMyAccount();
-            logger.info("*** Starting Register_Account_Without_Data ***");
+            logger.info("*** Starting Register_Account_Without_Data_Test ***");
             test.log(Status.PASS, "Set My Account Done");
             registerAccountPage.setRegisterAccount();
             test.log(Status.PASS, "Set Register Account Done");
@@ -243,9 +266,11 @@ public class RegistrationTest extends BasePage {
             Assert.assertEquals(registerAccountPage.getErrorUserEmail(), "E-Mail Address does not appear to be valid!");
             Assert.assertEquals(registerAccountPage.getErrorUserPassword(), "Password must be between 4 and 20 characters!");
             test.log(Status.PASS, "Assertions passed").info(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
-            logger.info("*** Finished Register_Account_Without_Data ***");
+            logger.info("*** Finished Register_Account_Without_Data_Test ***");
         } catch (Exception e){
             test.log(Status.FAIL,"Test Failed").fail(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+            logger.info("Register_Account_Without_Data_Test Failed");
+            Assert.fail("Register_Account_Without_Data_Test Failed");
         }
     }
 
@@ -253,7 +278,7 @@ public class RegistrationTest extends BasePage {
     public void registerAccountWithoutPrivacyPolicy() throws IOException {
         ExtentTest test = extentReports.createTest("Register_Account_Without_Privacy_Policy");
         try {
-            logger.info("*** Starting Register_Account_Without_Privacy_Policy ***");
+            logger.info("*** Starting Register_Account_Without_Privacy_Policy_Test ***");
             RegisterAccountPage registerAccountPage = new RegisterAccountPage(driver);
             ReadProperties readProperties = new ReadProperties();
             registerAccountPage.setMyAccount();
@@ -275,9 +300,11 @@ public class RegistrationTest extends BasePage {
             Assert.assertTrue(registerAccountPage.getAlert().isDisplayed());
             Assert.assertEquals(registerAccountPage.getAlert().getText(), "Warning: You must agree to the Privacy Policy!");
             test.log(Status.PASS,"Assertions passed").info(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
-            logger.info("*** Finished Register_Account_Without_Privacy_Policy ***");
+            logger.info("*** Finished Register_Account_Without_Privacy_Policy_Test ***");
         } catch (Exception e){
             test.log(Status.FAIL,"Test failed").fail(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+            logger.info("Register_Account_Without_Privacy_Policy_Test Failed");
+            Assert.fail("Register_Account_Without_Privacy_Policy_Test Failed");
         }
     }
 

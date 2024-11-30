@@ -142,7 +142,6 @@ public class RegisterAccountPage {
     public List<WebElement> fullElementList() {
         List<WebElement> list = new ArrayList<>();
         list.add(errorFirstName);
-        list.add(errorFirstName);
         list.add(errorLastName);
         list.add(errorEmail);
         list.add(errorPassword);
@@ -180,15 +179,15 @@ public class RegisterAccountPage {
             String lastname = set.getString("lastname");
             String email = set.getString("email");
 
-            if(readProperties.getValues("firstName").equals(name) &&
-                    readProperties.getValues("lastName").equals(lastname) &&
-                    readProperties.getValues("userEmail").equals(email)) {
+            if(readProperties.getValues("firstName").equals(name)
+                    && readProperties.getValues("lastName").equals(lastname)
+                    && readProperties.getValues("userEmail").equals(email)) {
                 recordInDataBase = true;
-                System.out.println("Record found in table: " +recordInDataBase+"/ Test passed");
+                System.out.println("Record found in table: " +recordInDataBase);
                 break;
             }
             else {
-                System.out.println("Record found in table: "+recordInDataBase+"/ Test failed");
+                System.out.println("Record found in table: "+recordInDataBase);
             }
         }
 

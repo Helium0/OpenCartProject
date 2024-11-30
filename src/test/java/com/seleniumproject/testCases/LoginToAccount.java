@@ -8,13 +8,13 @@ import com.seleniumproject.pages.RegisterAccountPage;
 import com.seleniumproject.utilities.DataProviders;
 import com.seleniumproject.utilities.ExtentReport;
 import com.seleniumproject.webBase.BasePage;
-import com.seleniumproject.webBase.MyListener;
+
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-@Listeners(value = {MyListener.class})
+
 public class LoginToAccount extends BasePage {
 
 
