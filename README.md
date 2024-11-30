@@ -27,14 +27,29 @@ Here I was able to connect to the data base and write some tests for example cre
 
 ![2024-11-30_22h09_42](https://github.com/user-attachments/assets/59019abe-437b-472e-91b2-5a6b5ae2228f)
 
+You can run tests class by class or click RMC and run all tests from xml file:
+
+![image](https://github.com/user-attachments/assets/145ba08a-e3b5-4e94-a829-0eb6a43508a5)
+
 
 I implemented extent report so after each tests run html file will be created:
 
 ![report](https://github.com/user-attachments/assets/c127c670-b59b-4569-afdf-156b9589c69d)
 
+Graphical report sample:
+![image](https://github.com/user-attachments/assets/154de82b-cbe4-4c7a-9344-03d29970358d)
+
+
 Screenshoots are also included in the report so you can easily check where test failed or went through. What you need to do is click on purple label with text: **base64 img**
 
 ![2024-11-30_21h55_08](https://github.com/user-attachments/assets/fb58e180-544e-49e4-80ec-9405c28a64a7)
+
+I used two approaches from where I pass data to my tests. 
+- from text file, here I had to use Properties class
+- from json file, here I had to use Data provider adnotation
+
+![2024-11-30_23h18_08](https://github.com/user-attachments/assets/16496e42-705b-4edf-9c4a-3c5a6ddad436)
+
 
 
 
