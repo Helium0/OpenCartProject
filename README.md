@@ -23,7 +23,7 @@ First you need all-in-one web server. There are plenty on the internet however I
 
 # More about project
 I have been learning Java since February 2024. As we all know nothing teach more as own projects where we can implement new things and examine our knowledge.
-Here I was able to connect to the data base and write some tests for example create user on UI and check if created user appear on DB :satisfied:
+Here I was able to connect to the data base and write some tests for example create user on UI and check if created user appears on DB :satisfied:
 
 ![2024-11-30_22h09_42](https://github.com/user-attachments/assets/59019abe-437b-472e-91b2-5a6b5ae2228f)
 
@@ -35,6 +35,8 @@ I implemented extent report so after each tests run html file will be created:
 Screenshoots are also included in the report so you can easily check where test failed or went through. What you need to do is click on purple label with text: **base64 img**
 
 ![2024-11-30_21h55_08](https://github.com/user-attachments/assets/fb58e180-544e-49e4-80ec-9405c28a64a7)
+
+
 
 
 
