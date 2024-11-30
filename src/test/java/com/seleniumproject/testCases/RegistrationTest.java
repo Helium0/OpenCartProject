@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.sql.*;
 
-@Listeners(value = {MyListener.class})
+
 public class RegistrationTest extends BasePage {
 
     @Test
