@@ -33,7 +33,7 @@ public class Home extends BasePage {
             test.log(Status.PASS, "Assertions passed").info(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
             logger.info("*** Finished Home_Page_Test ***");
         } else {
-            test.log(Status.FAIL, "Assertions passed").fail(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
+            test.log(Status.FAIL, "Assertions failed").fail(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
             logger.info("Home_Page_Test Failed");
             Assert.fail("Home_Page_Test Failed");
         }
