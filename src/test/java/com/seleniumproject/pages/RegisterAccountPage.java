@@ -1,22 +1,20 @@
 package com.seleniumproject.pages;
 
 import com.seleniumproject.webBase.ReadProperties;
+import com.seleniumproject.webBase.SeleniumHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.io.IOException;
 import java.sql.*;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterAccountPage {
 
-    private WebDriver driver;
+    private final WebDriver driver;
 
     @FindBy(xpath = "//span[text()='My Account']//following-sibling::i")
     private WebElement myAccount;
@@ -125,17 +123,14 @@ public class RegisterAccountPage {
         continueButton.click();
     }
 
-    public WebDriverWait waitObjMethod() {
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
-        return wait;
-    }
+
 
     public void waitMethod(List<WebElement> lista) {
-        waitObjMethod().until(ExpectedConditions.visibilityOfAllElements(lista));
+        SeleniumHelper.waitObjMethod().until(ExpectedConditions.visibilityOfAllElements(lista));
     }
 
     public void waitMethodForWebelement() {
-        waitObjMethod().until(ExpectedConditions.visibilityOf(webElement));
+        SeleniumHelper.waitObjMethod().until(ExpectedConditions.visibilityOf(webElement));
     }
 
 
@@ -158,9 +153,7 @@ public class RegisterAccountPage {
 
 
     public ResultSet database(String query) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myshop", "root","admin");
-        Statement statement = connection.createStatement();
-        return statement.executeQuery(query);
+        return SeleniumHelper.connectionStatement().executeQuery(query);
     }
 
 
