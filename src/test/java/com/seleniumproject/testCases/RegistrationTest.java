@@ -7,6 +7,7 @@ import com.seleniumproject.pages.RegisterAccountPage;
 import com.seleniumproject.utilities.ExtentReport;
 import com.seleniumproject.webBase.BasePage;
 import com.seleniumproject.webBase.ReadProperties;
+import com.seleniumproject.webBase.SeleniumHelper;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -64,7 +65,7 @@ public class RegistrationTest extends BasePage {
         test.log(Status.PASS,"Set Privacy Policy Done").info(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
         registerAccountPage.setContinueButton();
         test.log(Status.PASS,"Set Continue Button").info(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
-        registerAccountPage.waitObjMethod().until(ExpectedConditions.textToBePresentInElement(registerAccountPage.getAccountCreated(),"Your Account Has Been Created!"));
+        SeleniumHelper.waitObjMethod().until(ExpectedConditions.textToBePresentInElement(registerAccountPage.getAccountCreated(),"Your Account Has Been Created!"));
         Assert.assertEquals(registerAccountPage.getAccountCreated().getText(), "Your Account Has Been Created!");
             if(registerAccountPage.getAccountCreated().getText().equals("Your Account Has Been Created!")){
                 System.out.println("Registration successfull from UI/Application");
@@ -121,7 +122,7 @@ public class RegistrationTest extends BasePage {
         test.log(Status.PASS,"Set Privacy Policy Done");
         registerAccountPage.setContinueButton();
         test.log(Status.PASS,"Set Continue Button");
-        registerAccountPage.waitObjMethod().until(ExpectedConditions.textToBePresentInElement(registerAccountPage.getAlert(),"Warning: E-Mail Address is already registered!"));
+        SeleniumHelper.waitObjMethod().until(ExpectedConditions.textToBePresentInElement(registerAccountPage.getAlert(),"Warning: E-Mail Address is already registered!"));
 
         if(registerAccountPage.getAlert().getText().equals("Warning: E-Mail Address is already registered!")) {
             Assert.assertEquals(registerAccountPage.getAlert().getText(), "Warning: E-Mail Address is already registered!");
