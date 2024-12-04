@@ -7,10 +7,6 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-
-
-
-import java.io.IOException;
 import java.util.Date;
 
 public class ExtentReport {
@@ -28,7 +24,8 @@ public class ExtentReport {
         extentSparkReporter.config().setTheme(Theme.DARK);
     }
 
-    public static void endReport() {
+    public static void endReport()
+    {
         extentReports.flush();
     }
 
