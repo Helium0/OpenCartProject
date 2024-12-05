@@ -12,14 +12,11 @@ public class ReadProperties extends RegistrationTest {
 
     private FileInputStream fileInputStream() throws FileNotFoundException {
         return new FileInputStream(System.getProperty("user.dir")+"\\src\\test\\resources\\dataVariables");
-//        return file;
     }
 
     public String getValues(String value) throws IOException {
         Properties property = new Properties();
         property.load(fileInputStream());
         return  property.getProperty(value);
-//        return propertyFile;
-
     }
 }
