@@ -153,14 +153,14 @@ public class RegisterAccountPage {
 
 
     public ResultSet database(String query) throws SQLException {
-        return SeleniumHelper.connectionStatement().executeQuery(query);
+        SeleniumHelper seleniumHelper = new SeleniumHelper();
+        return seleniumHelper.connectionStatement().executeQuery(query);
     }
 
 
     public int databaseDelete(String query) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myshop", "root","admin");
-        Statement statement = connection.createStatement();
-        return statement.executeUpdate(query);
+        SeleniumHelper seleniumHelper = new SeleniumHelper();
+        return seleniumHelper.connectionStatement().executeUpdate(query);
     }
 
 
