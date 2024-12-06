@@ -7,6 +7,7 @@ import com.seleniumproject.utilities.ExtentReport;
 import com.seleniumproject.webBase.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.util.Set;
@@ -42,7 +43,7 @@ public class Home extends BasePage {
         HomePage homePage = new HomePage(driver);
         test = extentReports.createTest("Search_Bar_Test").log(Status.PASS,"Created Test");
         logger.info("*** Starting Search_Bar_Test ***");
-        homePage.writeOnSearchBar();
+        homePage.writeOnSearchBar("Apple Cinema");
         homePage.clickOnTheButton();
 
         if(homePage.getTitle().equals("Search - Apple") && homePage.getAppleProduct().equals("Apple Cinema 30\"")) {
