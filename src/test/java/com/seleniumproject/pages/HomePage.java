@@ -42,8 +42,8 @@ public class HomePage {
 
     }
 
-    public void writeOnSearchBar() {
-        searchBar.sendKeys("Apple");
+    public void writeOnSearchBar(String product) {
+        searchBar.sendKeys(product);
     }
 
     public void clickOnTheButton() {
