@@ -56,6 +56,9 @@ public class CartPage {
     @FindBy(id = "compare-total")
     private WebElement compareButton;
 
+    @FindBy(xpath = "//table[@class='table table-bordered']//img")
+    private List<WebElement> cameraPhotos;
+
 
     public CartPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -125,6 +128,10 @@ public class CartPage {
         cameras.stream()
                 .filter(element -> element.getAttribute("title").equals("Compare this Product"))
                 .forEach(element -> element.click());
+    }
+
+    public int countComparedItems() {
+        return cameraPhotos.size();
     }
 
 }
