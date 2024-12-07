@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class SearchPage extends BasePage {
+public class SearchBarPage extends BasePage {
 
    private WebDriver driver;
 
@@ -18,7 +18,7 @@ public class SearchPage extends BasePage {
     private List<WebElement> productElement;
 
 
-    public SearchPage (WebDriver driver){
+    public SearchBarPage (WebDriver driver){
         PageFactory.initElements(driver,this);
         this.driver = driver;
     }

@@ -38,25 +38,6 @@ public class Home extends BasePage {
         }
     }
 
-    @Test
-    public void searchBarTest() {
-        HomePage homePage = new HomePage(driver);
-        test = extentReports.createTest("Search_Bar_Test").log(Status.PASS,"Created Test");
-        logger.info("*** Starting Search_Bar_Test ***");
-        homePage.writeOnSearchBar("Apple Cinema");
-        homePage.clickOnTheButton();
-
-        if(homePage.getTitle().equals("Search - Apple") && homePage.getAppleProduct().equals("Apple Cinema 30\"")) {
-            Assert.assertEquals(homePage.getTitle(), "Search - Apple");
-            Assert.assertEquals(homePage.getAppleProduct(), "Apple Cinema 30\"");
-            test.log(Status.PASS, "Assertions passed").info(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
-            logger.info("*** Finished Search_Bar_Test ***");
-        } else {
-            test.log(Status.FAIL, "Assertions failed").fail(MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReport.capturePhoto64(driver)).build());
-            logger.info("Search_Bar_Test Failed");
-            Assert.fail("Search_Bar_Test Failed");
-        }
-    }
 
     @Test
     public void changeCurrencyTest() {

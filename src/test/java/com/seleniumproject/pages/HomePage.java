@@ -1,5 +1,6 @@
 package com.seleniumproject.pages;
 
+import com.seleniumproject.webBase.SeleniumHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,9 +19,6 @@ public class HomePage {
 
     @FindBy(xpath = "//button[@type='button']")
     private WebElement clickButton;
-
-    @FindBy(xpath = "//a[contains(text(), 'Apple')]")
-    private WebElement appleProduct;
 
     @FindBy(xpath = "//span[text()='Currency']")
     private WebElement currency;
@@ -50,10 +48,6 @@ public class HomePage {
         clickButton.click();
     }
 
-    public String getAppleProduct() {
-        return appleProduct.getText();
-    }
-
     public String getTitle() {
         return driver.getTitle();
     }
@@ -76,17 +70,13 @@ public class HomePage {
         for(WebElement log : logos) {
             if(log.getAttribute("alt").equals(logoName)!= log.isDisplayed()){
                 WebElement arrow = driver.findElement(By.xpath("//button[@data-bs-target='#carousel-banner-1']//span[@class='fa-solid fa-chevron-right']"));
-                actionsInstance(driver).click(arrow).perform();
+                SeleniumHelper.actions(driver).click(arrow).perform();
             } else {
                 logoIsDisplayed = true;
                 break;
             }
         }
         return logoIsDisplayed;
-    }
-
-    private Actions actionsInstance(WebDriver driver){
-        return new Actions(driver);
     }
 
 
