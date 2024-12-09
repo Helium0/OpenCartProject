@@ -9,5 +9,4 @@ public class BaseComponentPage {
     BaseComponentPage(WebElement rootElement) {
         this.rootElement = rootElement;
     }
-
 }
