@@ -1,5 +1,7 @@
 package com.seleniumproject.pages;
 
+import com.seleniumproject.webBase.BasePage;
+import com.seleniumproject.webBase.ProductComponent;
 import com.seleniumproject.webBase.SeleniumHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,13 +9,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Test;
-
-import java.time.Duration;
 import java.util.List;
+import java.util.function.Predicate;
 
-public class CartPage {
+public class CartPage extends BasePage {
 
     WebDriver driver;
 
@@ -58,6 +57,7 @@ public class CartPage {
 
     @FindBy(xpath = "//table[@class='table table-bordered']//img")
     private List<WebElement> cameraPhotos;
+
 
 
     public CartPage(WebDriver driver) {
@@ -129,6 +129,12 @@ public class CartPage {
                 .filter(element -> element.getAttribute("title").equals("Compare this Product"))
                 .forEach(element -> element.click());
     }
+
+    public List<ProductComponent> compareProducts(){
+        return cameras.stream().map(element -> new ProductComponent(element))
+                .toList();
+    }
+
 
     public int countComparedItems() {
         return cameraPhotos.size();
