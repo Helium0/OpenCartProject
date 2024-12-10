@@ -9,6 +9,8 @@
             <class name="com.seleniumproject.testCases.LoginToAccount"></class>
             <class name="com.seleniumproject.testCases.RegistrationTest"></class>
             <class name="com.seleniumproject.testCases.Home"></class>
+            <class name="com.seleniumproject.testCases.SearchBarTest"></class>
+            <class name="com.seleniumproject.testCases.CartTest"></class>
         </classes>
     </test>
 </suite>
