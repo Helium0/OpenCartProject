@@ -22,6 +22,5 @@ public class ProductComponent extends BaseComponentPage {
     public String getPrice() {
         return rootElement.findElement(CURRENT_PRICE_BY).getText();
     }
-
 }
 

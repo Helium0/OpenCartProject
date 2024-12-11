@@ -14,7 +14,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class LoginToAccount extends BasePage {
+public class LoginToAccountTest extends BasePage {
 
 
     @Test

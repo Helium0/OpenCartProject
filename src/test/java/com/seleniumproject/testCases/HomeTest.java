@@ -7,13 +7,12 @@ import com.seleniumproject.utilities.ExtentReport;
 import com.seleniumproject.webBase.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.util.Set;
 
 
-public class Home extends BasePage {
+public class HomeTest extends BasePage {
 
 
 
