@@ -6,11 +6,11 @@ import com.seleniumproject.webBase.SeleniumHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class CartPage extends BasePage {
 
@@ -27,6 +27,9 @@ public class CartPage extends BasePage {
 
     @FindBy(xpath = "//div[@id='alert']//div[contains(text(),'Success: You have added')]")
     private WebElement productAdded;
+
+    @FindBy(xpath = "//div[@id='alert']//div[contains(text(),'Success: You have removed')]")
+    private WebElement productRemoved;
 
     @FindBy(xpath = "//button[@class='btn btn-lg btn-inverse btn-block dropdown-toggle']")
     private WebElement itemButton;
@@ -57,7 +60,8 @@ public class CartPage extends BasePage {
 
     @FindBy(xpath = "//table[@class='table table-bordered']//img")
     private List<WebElement> cameraPhotos;
-
+    @FindBy(xpath = "//div[@id='input-rating']//input")
+    private List<WebElement> itemRates;
 
 
     public CartPage(WebDriver driver) {
@@ -81,6 +85,10 @@ public class CartPage extends BasePage {
         return productAdded.getText();
     }
 
+    public String productHasBeenRemoved() {
+        return productRemoved.getText();
+    }
+
     public void clickOnItemsCart() {
         itemButton.click();
     }
@@ -96,10 +104,18 @@ public class CartPage extends BasePage {
     public void clickOnCompareButton() {
         compareButton.click();
     }
+    public void updateQuantity(String howMany) {
+        quantityProduct.clear();
+        quantityProduct.sendKeys(howMany);
+    }
 
     public boolean waitUntilTextVisible(String text) {
         return SeleniumHelper.waitObjMethod().until(ExpectedConditions.textToBePresentInElement(itemButton, text));
     }
+
+//    public List<WebElement> waitUntilClickable() {
+//        return SeleniumHelper.waitObjMethod().until(ExpectedConditions.(itemRates));
+//    }
 
     public String checkTotalPrice() {
         String text = "";
@@ -134,6 +150,20 @@ public class CartPage extends BasePage {
         return cameras.stream().map(element -> new ProductComponent(element))
                 .toList();
     }
+    public void clickOnRate(String attributeName, String value) {
+        for (WebElement el : itemRates) {
+            if(el.getAttribute(attributeName).equals(value)) {
+                SeleniumHelper.actions(driver).click(el).perform();
+            }
+        }
+    }
+
+    public WebElement selectedRadiobutton () {
+        return itemRates.stream().filter(element -> element.isSelected())
+                .findAny().orElseThrow();
+    }
+
+
 
 
     public int countComparedItems() {
